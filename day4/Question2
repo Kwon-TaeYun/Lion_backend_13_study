@@ -1,0 +1,41 @@
+public class TV {
+    private boolean power = false;
+    private int channel;
+
+    public void togglePower(){
+        if(!power){
+            power = true;
+            System.out.println("전원이 켜졌습니다.");
+        } else {
+            power = false;
+            System.out.println("전원이 꺼졌습니다.");
+        }
+    }
+
+    public void changeChannel(int newChannel){
+        this.channel = newChannel;
+        System.out.println("채널을 " + this.channel +"번으로 변경했습니다.");
+    }
+}
+
+//목표: 클래스 정의와 메서드 사용 연습.
+//TV라는 이름의 클래스를 정의합니다.
+//TV 클래스에는 아래와 같은 속성을 추가하세요:
+//power (전원 상태, true 또는 false)
+//channel (현재 채널, 정수형)
+//TV 클래스에는 아래와 같은 메서드를 추가하세요:
+//togglePower(): 전원 상태를 켜거나 끕니다.
+//changeChannel(int newChannel): 새로운 채널로 변경합니다.
+//main 메서드에서 TV 객체를 생성하고, 전원을 켜고 채널을 변경한 뒤 출력하세요.
+
+public class Question {
+
+    public static void main(String[] args) {
+       TV tv = new TV();
+       tv.togglePower();
+       tv.changeChannel(11);
+       tv.togglePower();
+
+    }
+
+}
