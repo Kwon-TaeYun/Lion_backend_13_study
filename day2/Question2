@@ -1,0 +1,29 @@
+//문제 2: 계산기 프로그램 (args 활용)
+//프로그램 실행 시 args로 두 숫자와 연산자(+, -, *, /)를 입력받아 결과를 출력하는 프로그램을 작성하세요.
+//예를 들어, java Main 10 5 +로 실행하면 10 + 5 = 15가 출력됩니다.
+
+public class Question {
+    public static void main(String[] args) {
+        int num1 = Integer.parseInt(args[0]);
+        int num2 = Integer.parseInt(args[1]);
+        String num3 = args[2];
+        double result = 0;
+        if(num3.equals("+")){
+            result = num1 + num2;
+        } else if(num3.equals("-")){
+            result = num1 - num2;
+        } else if(num3.equals("*")){
+            result = num1 * num2;
+        } else if(num3.equals("/")){
+            result = num1 / num2;
+        } else {
+            System.out.println("해당하지 않는 연산자입니다.");
+        }
+
+        System.out.println("result = " + result);
+
+
+
+
+    }
+}
