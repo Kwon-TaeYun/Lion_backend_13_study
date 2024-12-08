@@ -1,0 +1,38 @@
+public class Animal {
+    private String name;
+
+    private String type;
+
+    public Animal(String name, String type) {
+        this.name = name;
+        this.type = type;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+}
+
+//실습 문제 4: 동물 클래스 정의하기
+//목표: 여러 개의 객체 생성 및 활용.
+//Animal이라는 클래스를 정의합니다.
+//Animal 클래스에는 아래와 같은 속성을 추가하세요:
+//name (동물 이름)
+//type (동물 종류, 예: 개, 고양이)
+//main 메서드에서 서로 다른 동물을 나타내는 Animal 객체를 3개 생성하고, 이름과 종류를 출력하세요.
+public class Question {
+    public static void main(String[] args) {
+        Animal animal1 = new Animal("뽀삐", "개");
+        Animal animal2 = new Animal("나비", "고양이");
+        Animal animal3 = new Animal("찡찡이", "햄스터");
+
+        System.out.println("이름: " + animal1.getName() + ", 종류: " + animal1.getType());
+        System.out.println("이름: " + animal2.getName() + ", 종류: " + animal2.getType());
+        System.out.println("이름: " + animal3.getName() + ", 종류: " + animal3.getType());
+    }
+}
