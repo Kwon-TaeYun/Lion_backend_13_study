@@ -1,1 +1,30 @@
+//문제 1: 숫자 맞히기 게임 (args 활용)
+//프로그램 실행 시 args로 110 사이의 숫자를 정답으로 입력받습니다.
+//사용자는 110 사이의 숫자를 계속 시도하며, 정답을 맞힐 때까지 반복합니다.
+//정답보다 작은 경우 "더 높습니다", 큰 경우 "더 낮습니다"라는 힌트를 출력합니다.
+import java.util.Scanner;
+public class Question {
+    public static void main(String[] args) {
+        String s = args[0];
+        int answer = Integer.parseInt(s);
+        for(int j = 1; j< args.length;j++){
+            int i = Integer.parseInt(args[j]);
+            if (i < 1 || i > 110) {
+                System.out.println("정답은 1부터 110까지의 정수입니다. 다시 입력하세요.");
+            } else if(i < answer){
+                System.out.println("더 낮습니다");
 
+            } else if(i > answer){
+                System.out.println("더 높습니다");
+
+            } else {
+                System.out.println("정답입니다. 프로그램을 종료합니다.");
+                break;
+            }
+        }
+
+
+
+
+    }
+}
