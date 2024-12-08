@@ -1,0 +1,121 @@
+import java.util.Arrays;
+
+public class Question {
+    public static void main(String[] args) {
+        //문제 1: 배열 역순 출력
+        //int 타입의 배열 numbers가 주어졌을 때, 배열의 요소를 역순으로 출력하는 코드를 작성하세요.
+        int[] numbers = {3, 6, 9, 12, 15};
+        for(int i = numbers.length - 1; i >= 0; i--){
+            System.out.println(numbers[i]);
+        }
+        System.out.println("==================================");
+
+        //문제 2: 최대값과 최소값 찾기
+        //double 타입의 배열 doubles에서 최대값과 최소값을 찾아 출력하는 코드를 작성하세요.
+        double[] doubles = {1.5, 3.7, 2.4, 9.8, 7.6, 3.4};
+        Arrays.sort(doubles);
+        System.out.println("min = " + doubles[0]);
+        System.out.println("max = " + doubles[doubles.length - 1]);
+        System.out.println("==================================");
+
+        //문제 3: 배열의 숫자 합계와 평균
+        //int 타입의 배열 scores에 저장된 모든 숫자의 합계와 평균을 계산하는 코드를 작성하세요. 평균은 소수점 두 자리까지 출력하세요.
+        int[] scores = {70, 85, 90, 45, 100};
+        int sum = 0;
+        for (int score : scores) {
+            sum += score;
+        }
+        System.out.println("sum = " + sum);
+        System.out.println("average = " + sum/ scores.length);
+        System.out.println("==================================");
+
+        //문제 4: 배열 요소의 이동
+        //String 타입의 배열 words가 있을 때, 모든 요소를 한 칸씩 오른쪽으로 이동시키는 코드를 작성하세요. 마지막 요소는 배열의 첫 번째 요소로 이동해야 합니다.
+        String[] words = {"Java", "Python", "C", "JavaScript"};
+
+        // 마지막 요소 저장
+        String lastElement = words[words.length - 1];
+
+        // 뒤에서부터 요소를 한 칸씩 오른쪽으로 이동
+        for (int i = words.length - 1; i > 0; i--) {
+            words[i] = words[i - 1];
+        }
+
+        // 저장된 마지막 요소를 첫 번째 위치로 설정
+        words[0] = lastElement;
+
+        // 결과 출력
+        for (String word : words) {
+            System.out.println("word = " + word);
+        }
+        System.out.println("==================================");
+
+        //문제 5: 두 배열의 합집합 구하기
+        //int 타입의 두 배열 array1과 array2가 주어졌을 때, 두 배열의 합집합을 구하여 새 배열에 저장하고, 결과 배열을 출력하는 코드를 작성하세요.
+        //합집합 배열에는 중복된 요소가 없어야 합니다.
+        int[] array1 = {1, 3, 5, 7, 9};
+        int[] array2 = {0, 2, 4, 6, 8, 10, 3, 5};
+        int[] tempArray = new int[array1.length + array2.length];
+        int index = 0;
+
+        // array2의 모든 요소를 tempArray에 복사
+        for (int i = 0; i < array2.length; i++) {
+            tempArray[index++] = array2[i];
+        }
+
+        // array1의 요소를 tempArray에 추가, 중복 제거
+        for (int i = 0; i < array1.length; i++) {
+            boolean isDuplicate = false;
+            for (int j = 0; j < array2.length; j++) {
+                if (array1[i] == array2[j]) {
+                    isDuplicate = true;
+                    break;
+                }
+            }
+            if (!isDuplicate) {
+                tempArray[index++] = array1[i];
+            }
+        }
+
+        // 최종 결과 출력
+        System.out.print("합집합: ");
+        for (int i = 0; i < index; i++) {
+            System.out.print(tempArray[i] + " ");
+        }
+        System.out.println();
+        System.out.println("==================================");
+
+        //문제 6: 이차원 배열에서의 대각선 요소 합계
+        //int 타입의 이차원 배열 matrix가 주어졌을 때, 두 대각선의 요소 합계를 구하는 코드를 작성하세요. 배열은 정사각형 배열이라고 가정합니다.
+        int[][] matrix = {
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 9}
+        };
+        //대각선 요소의 합계를 각각 구하고, 그 결과를 출력하세요.
+        //좌상 -> 우하
+        int sum1 = 0;
+        for(int i = 0; i < matrix.length; i++){
+            for(int j = 0; j < matrix[i].length; j++){
+                if(i == j){
+                    sum1 += matrix[i][j];
+                }
+            }
+        }
+        System.out.println("sum1 = " + sum1);
+
+        //좌하 -> 우상
+        int sum2 = 0;
+        for(int i = 0; i < matrix.length; i++){
+            for(int j = matrix[i].length - 1; j >= 0; j--){
+                if(i + j == matrix.length - 1){
+                    sum2 += matrix[i][j];
+                }
+
+            }
+        }
+        System.out.println("sum2 = " + sum2);
+    }
+
+
+}
