@@ -1,0 +1,18 @@
+//문제 4: 합계 계산기 (args 활용)
+//프로그램 실행 시 args로 여러 숫자를 입력받아 합계를 계산하세요.
+//모든 숫자를 더한 결과를 출력합니다.
+import java.util.Scanner;
+public class Question {
+    public static void main(String[] args) {
+        int result = 0;
+        for(int i = 0; i < args.length; i++){
+           result += Integer.parseInt(args[i]);
+        }
+
+        System.out.println("합계: " + result);
+
+
+
+
+    }
+}
