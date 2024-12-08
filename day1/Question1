@@ -1,0 +1,10 @@
+import java.util.Scanner;
+
+public class Question {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        double C = scanner.nextDouble();
+        double F = C * 9 / 5 + 32;
+        System.out.println("화씨 온도는 " + F +"F입니다.");
+    }
+}
