@@ -1,0 +1,19 @@
+//문제 3: 홀짝 판별기 (args 활용)
+//프로그램 실행 시 args로 숫자를 입력받아 해당 숫자가 홀수인지 짝수인지 판별하세요.
+//여러 숫자를 한꺼번에 입력받아 각각 판별 결과를 출력합니다.
+import java.util.Scanner;
+public class Question {
+    public static void main(String[] args) {
+        for(int i = 0; i < args.length; i++){
+            if((Integer.parseInt(args[i]) % 2 == 0)){
+                System.out.println(args[i] + "는 짝수입니다.");
+            } else {
+                System.out.println(args[i] + "는 홀수입니다.");
+            }
+        }
+
+
+
+
+    }
+}
