@@ -1,35 +1,27 @@
-package day09Project;
-
-import day09.BankException;
+package day09BankProject;
 
 public class Account {
-    private String name;
     private String accountNumber;
+
+    private String userID;
 
     private int money;
 
-    public Account(String name, String accountNumber) {
-        this.name = name;
+    public Account(String userID, String accountNumber) {
         this.accountNumber = accountNumber;
+        this.userID = userID;
     }
 
     public String getAccountNumber() {
         return accountNumber;
     }
 
-    public String getName() {
-        return name;
-    }
     public int getMoney() {
         return money;
     }
 
     public Account(int money) {
         this.money = money;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public void setAccountNumber(String accountNumber) {
