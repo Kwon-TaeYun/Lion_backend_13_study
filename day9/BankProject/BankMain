@@ -13,7 +13,9 @@ public class BankMain {
         System.out.println("3. 입금");
         System.out.println("4. 출금");
         System.out.println("5. 잔액 조회");
-        System.out.println("6. 종료");
+        System.out.println("6. 계좌 조회");
+        System.out.println("7. 종료");
+        System.out.println("==========================================================");
 
         while(true){
             Scanner scanner = new Scanner(System.in);
@@ -133,9 +135,29 @@ public class BankMain {
                 }
 
             }else if(num == 6){
+                System.out.println("고객의 정보를 입력해주세요.");
+                System.out.print("고객 아이디: ");
+                String id = scanner.next();
+                Customer customer = bank.findCustomer(id);
+                if(customer == null){
+                    System.out.println("고객이 존재하지 않습니다.");
+                    System.out.println("===================================");
+                }else {
+                    try {
+                        customer.showAccountNumbers();
+                        System.out.println("===================================");
+                    } catch (AccountNotFoundException e) {
+                        System.out.println(e.getMessage());
+                        System.out.println("===================================");
+                    }
+
+                }
+
+            }else if(num == 7){
                 System.out.println("은행 시스템을 종료합니다.");
                 return;
-            }else{
+            }
+            else{
                 System.out.println("번호를 다시 입력해주세요.");
                 System.out.println("===================================");
             }
