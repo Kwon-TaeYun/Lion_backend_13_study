@@ -1,8 +1,10 @@
 package day09BankProject;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class BankMain {
+
     public static void main(String[] args) {
 
         Bank bank = new Bank();
@@ -20,147 +22,166 @@ public class BankMain {
         while(true){
             Scanner scanner = new Scanner(System.in);
             System.out.print("번호를 입력해주세요: ");
-            int num = scanner.nextInt();
-            if(num == 1){
-                System.out.println("고객 등록을 시작합니다.");
-                System.out.print("고객 아이디: ");
-                String id = scanner.next();
-                System.out.print("고객 이름: ");
-                String name = scanner.next();
-                try {
-                    bank.addCustomer(id, name);
-                    System.out.println("회원 가입 완료");
-                    System.out.println("===================================");
-                } catch (BankOperationException e) {
-                    System.out.println(e.getMessage());
-                    System.out.println("===================================");
-                }
-            }else if(num == 2){
-                System.out.println("계좌 생성하기에 앞서 고객의 정보를 입력해주세요.");
-                System.out.print("고객 아이디: ");
-                String id = scanner.next();
-                Customer customer = bank.findCustomer(id);
-                if(customer == null){
-                    System.out.println("고객이 존재하지 않습니다.");
-                    System.out.println("===================================");
-                }else {
+            try {
+                int num = scanner.nextInt();
+                if (num == 1) {
+                    System.out.println("고객 등록을 시작합니다.");
+                    System.out.print("고객 아이디: ");
+                    String id = scanner.next();
+                    System.out.print("고객 이름: ");
+                    String name = scanner.next();
+                    System.out.print("고객 비밀번호: ");
+                    String password = scanner.next();
                     try {
-                        customer.addAccountNumber();
+                        bank.addCustomer(id, password, name);
+                        System.out.println("회원 가입 완료");
                         System.out.println("===================================");
                     } catch (BankOperationException e) {
                         System.out.println(e.getMessage());
                         System.out.println("===================================");
                     }
-                }
-            }else if(num == 3){
-                System.out.println("고객의 정보를 입력해주세요.");
-                System.out.print("고객 아이디: ");
-                String id = scanner.next();
-                Customer customer = bank.findCustomer(id);
-                if(customer == null){
-                    System.out.println("고객이 존재하지 않습니다.");
-                    System.out.println("===================================");
-                }else {
-                    System.out.println("입금을 진행하기 앞서 통장, 계좌 정보를 입력해주세요");
-                    System.out.print("계좌 번호: ");
-                    String accountNumber = scanner.next();
-                    try {
-                        Account account = customer.findAccountNumber(accountNumber);
-                        System.out.print("입금할 금액을 입력해주세요: ");
-                        int money = scanner.nextInt();
-                        account.deposit(money);
+                } else if (num == 2) {
+                    System.out.println("계좌 생성하기에 앞서 고객의 정보를 입력해주세요.");
+                    System.out.print("고객 아이디: ");
+                    String id = scanner.next();
+                    Customer customer = bank.findCustomer(id);
+                    if (customer == null) {
+                        System.out.println("고객이 존재하지 않습니다.");
                         System.out.println("===================================");
-                    } catch (AccountNotFoundException e) {
-                        System.out.println(e.getMessage());
+                    } else {
+                        try {
+                            customer.addAccountNumber();
+                            System.out.println("===================================");
+                        } catch (BankOperationException e) {
+                            System.out.println(e.getMessage());
+                            System.out.println("===================================");
+                        }
+                    }
+                } else if (num == 3) {
+                    System.out.println("고객의 정보를 입력해주세요.");
+                    System.out.print("고객 아이디: ");
+                    String id = scanner.next();
+                    Customer customer = bank.findCustomer(id);
+                    if (customer == null) {
+                        System.out.println("고객이 존재하지 않습니다.");
                         System.out.println("===================================");
-                    } catch (InvalidTransactionException e1) {
-                        System.out.println(e1.getMessage());
+                    } else {
+                        System.out.println("입금을 진행하기 앞서 통장, 계좌 정보를 입력해주세요");
+                        System.out.print("계좌 번호: ");
+                        String accountNumber = scanner.next();
+                        try {
+                            Account account = customer.findAccountNumber(accountNumber);
+                            int money;
+                            System.out.print("입금할 금액을 입력해주세요: ");
+                            try {
+                                money = scanner.nextInt();
+                                account.deposit(money);
+                            } catch (InputMismatchException e) {
+                                System.out.println("정수로 입력해주세요!!");
+                                System.out.println("===================================");
+                            }
+                        } catch (AccountNotFoundException e) {
+                            System.out.println(e.getMessage());
+                            System.out.println("===================================");
+                        } catch (InvalidTransactionException e1) {
+                            System.out.println(e1.getMessage());
+                            System.out.println("===================================");
+                        }
+
+                    }
+                } else if (num == 4) {
+                    System.out.println("고객의 정보를 입력해주세요.");
+                    System.out.print("고객 아이디: ");
+                    String id = scanner.next();
+                    Customer customer = bank.findCustomer(id);
+                    if (customer == null) {
+                        System.out.println("고객이 존재하지 않습니다.");
                         System.out.println("===================================");
+                    } else {
+                        System.out.println("입금을 진행하기 앞서 계좌 정보를 입력해주세요");
+                        System.out.print("계좌 번호: ");
+                        String accountNumber = scanner.next();
+                        int money;
+                        try {
+                            Account account = customer.findAccountNumber(accountNumber);
+                            System.out.print("출금할 금액을 입력해주세요: ");
+                            try {
+                                money = scanner.nextInt();
+                                account.withdraw(money);
+                            } catch (InputMismatchException e) {
+                                System.out.println("정수로 입력해주세요!!");
+                                System.out.println("===================================");
+                            }
+                            System.out.println("===================================");
+
+                        } catch (AccountNotFoundException e) {
+                            System.out.println(e.getMessage());
+                            System.out.println("===================================");
+
+                        } catch (InvalidTransactionException e1) {
+                            System.out.println(e1.getMessage());
+                            System.out.println("===================================");
+                        }
+
+
                     }
 
-                }
-            }else if(num == 4){
-                System.out.println("고객의 정보를 입력해주세요.");
-                System.out.print("고객 아이디: ");
-                String id = scanner.next();
-                Customer customer = bank.findCustomer(id);
-                if(customer == null){
-                    System.out.println("고객이 존재하지 않습니다.");
-                    System.out.println("===================================");
-                }else {
-                    System.out.println("입금을 진행하기 앞서 계좌 정보를 입력해주세요");
-                    System.out.print("계좌 번호: ");
-                    String accountNumber = scanner.next();
-                    try {
-                       Account account = customer.findAccountNumber(accountNumber);
-                        System.out.print("출금할 금액을 입력해주세요: ");
-                        int money = scanner.nextInt();
-                        account.withdraw(money);
+                } else if (num == 5) {
+                    System.out.println("고객의 정보를 입력해주세요.");
+                    System.out.print("고객 아이디: ");
+                    String id = scanner.next();
+                    Customer customer = bank.findCustomer(id);
+                    if (customer == null) {
+                        System.out.println("고객이 존재하지 않습니다.");
                         System.out.println("===================================");
+                    } else {
+                        System.out.println("계좌에 있는 현재 잔고를 조회하기 앞서 계좌 정보를 입력해주세요");
+                        System.out.print("계좌 번호: ");
+                        String accountNumber = scanner.next();
+                        try {
+                            Account account = customer.findAccountNumber(accountNumber);
+                            System.out.println("현재 잔고: " + account.getMoney());
+                            System.out.println("===================================");
+                        } catch (AccountNotFoundException e) {
+                            System.out.println(e.getMessage());
+                            System.out.println("===================================");
+                        }
 
-                    } catch (AccountNotFoundException e) {
-                        System.out.println(e.getMessage());
-                        System.out.println("===================================");
 
-                    } catch (InvalidTransactionException e1) {
-                        System.out.println(e1.getMessage());
-                        System.out.println("===================================");
                     }
 
-
-                }
-
-            }else if(num == 5){
-                System.out.println("고객의 정보를 입력해주세요.");
-                System.out.print("고객 아이디: ");
-                String id = scanner.next();
-                Customer customer = bank.findCustomer(id);
-                if(customer == null){
-                    System.out.println("고객이 존재하지 않습니다.");
-                    System.out.println("===================================");
-                }else {
-                    System.out.println("입금을 진행하기 앞서 계좌 정보를 입력해주세요");
-                    System.out.print("계좌 번호: ");
-                    String accountNumber = scanner.next();
-                    try {
-                        Account account = customer.findAccountNumber(accountNumber);
-                        System.out.println("현재 잔고: " + account.getMoney());
+                } else if (num == 6) {
+                    System.out.println("고객의 정보를 입력해주세요.");
+                    System.out.print("고객 아이디: ");
+                    String id = scanner.next();
+                    Customer customer = bank.findCustomer(id);
+                    if (customer == null) {
+                        System.out.println("고객이 존재하지 않습니다.");
                         System.out.println("===================================");
-                    } catch (AccountNotFoundException e) {
-                        System.out.println(e.getMessage());
-                        System.out.println("===================================");
+                    } else {
+                        try {
+                            customer.showAccountNumbers();
+                            System.out.println("===================================");
+                        } catch (AccountNotFoundException e) {
+                            System.out.println(e.getMessage());
+                            System.out.println("===================================");
+                        }
+
                     }
 
-
-                }
-
-            }else if(num == 6){
-                System.out.println("고객의 정보를 입력해주세요.");
-                System.out.print("고객 아이디: ");
-                String id = scanner.next();
-                Customer customer = bank.findCustomer(id);
-                if(customer == null){
-                    System.out.println("고객이 존재하지 않습니다.");
+                } else if (num == 7) {
+                    System.out.println("은행 시스템을 종료합니다.");
+                    return;
+                } else {
+                    System.out.println("번호를 다시 입력해주세요.");
                     System.out.println("===================================");
-                }else {
-                    try {
-                        customer.showAccountNumbers();
-                        System.out.println("===================================");
-                    } catch (AccountNotFoundException e) {
-                        System.out.println(e.getMessage());
-                        System.out.println("===================================");
-                    }
-
                 }
-
-            }else if(num == 7){
-                System.out.println("은행 시스템을 종료합니다.");
-                return;
-            }
-            else{
-                System.out.println("번호를 다시 입력해주세요.");
+            } catch (InputMismatchException e){
+                System.out.println("메뉴를 다시 입력해주세요.");
                 System.out.println("===================================");
             }
         }
     }
+
+
 }
