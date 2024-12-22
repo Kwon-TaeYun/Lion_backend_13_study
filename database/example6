@@ -1,0 +1,81 @@
+-- root 권한에서 실행한다.
+
+#### 문제 1: liondb 라는 이름으로 데이터베이스를 생성해 주세요.
+create database liondb;
+
+#### 문제 2: user명 lion password는 like로 user를 생성해 주세요.
+create user 'lion'@'%' identified by 'like';
+create user 'lion'@'localhost' identified by 'like';
+
+#### 문제 3: lion user가 liondb를 사용할 수 있도록 권한을 부여해 주세요.
+grant all privileges on liondb.* to 'lion'@'%';
+grant all privileges on liondb.* to 'lion'@'localhost';
+
+#### 문제 4: user, user_role, role, board  테이블을 제약 조건들을 적절히 이용해서 생성해 주세요.  
+use liondb;
+
+drop table if exists  user;
+
+create table user (
+                      user_id INT PRIMARY KEY AUTO_INCREMENT,
+                      email VARCHAR(255) NOT NULL unique,
+                      name VARCHAR(50) NOT NULL,
+                      password VARCHAR(500) NOT NULL,
+                      regdate TIMESTAMP DEFAULT NOW()
+);
+
+drop table if exists role;
+
+create table role (
+                      role_id  INT PRIMARY KEY,
+                      name VARCHAR(20)
+);
+
+drop table if exists user_role;
+
+create table user_role (
+                           user_id INT,
+                           role_id INT,
+                           primary key(user_id, role_id),
+                           FOREIGN KEY (user_id) REFERENCES user(user_id),
+                           FOREIGN KEY (role_id) REFERENCES role(role_id)
+);
+
+drop table if exists  board;
+
+CREATE TABLE board (
+                       board_id INT PRIMARY KEY AUTO_INCREMENT,
+                       title VARCHAR(100) NOT NULL,
+                       content TEXT NULL,
+                       user_id INT NOT NULL,
+                       regdate TIMESTAMP DEFAULT NOW(),
+                       view_cnt INT DEFAULT 0,
+                       FOREIGN KEY (user_id) REFERENCES user(user_id)
+);
+
+#### 문제 5: 각 테이블에 적절한 샘플 데이터를 입력해 주세요.  
+insert into user (email,name, password,regdate) 
+values('taeyun1118@naver.com','yun','1234', now());
+insert into user (email,name, password,regdate) 
+values('jinjoo7777@naver.com','jinjoo','7777', now());
+
+insert into role(role_id, name) values(1,'홍보부');
+insert into role(role_id,name) values(2,'집행부');
+insert into role(role_id,name) values(3,'환경부');
+insert into role(role_id,name) values(4,'기획부');
+
+insert into board(title, content, user_id, regdate) values ( 'java', 'database', 1, now());
+insert into board(title, content, user_id, regdate) values ( 'java_basic', 'java', 2, now());
+
+insert into user_role(user_id, role_id) values (1,2);
+insert into user_role(user_id, role_id) values (2,1);
+
+#### 문제 6: 수정,삭제 조회등 쿼리를 연습해 보세요.   (연습쿼리도 기록해주세요.) 
+select * from board;
+select * from user;
+select u.user_id, u.name, r.role_id, r.name from user u, role r, user_role ur
+where u.user_id = ur.user_id and r.role_id = ur.role_id;
+
+update board set content = 'java_intermmediate' where user_id = 2;
+
+delete from board where user_id = 2;
