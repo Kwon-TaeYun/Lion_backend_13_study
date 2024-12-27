@@ -1,0 +1,52 @@
+실습 문제 5: 실생활 객체 모델링
+부모 클래스: Vehicle
+속성:
+name (차량 이름, 문자열)
+speed (속도, 정수형)
+메서드:
+drive(): "차량이 주행합니다."를 출력.
+자식 클래스:
+Car: drive()를 오버라이딩하여 "자동차가 주행합니다."를 출력.
+Bike: drive()를 오버라이딩하여 "오토바이가 주행합니다."를 출력.
+메인 메서드:
+Vehicle 타입의 배열에 Car와 Bike 객체를 저장한 뒤, 반복문을 사용하여 drive()를 호출하세요.
+
+package day06.exam;
+class Vehicle{
+    private String name;
+    private int speed;
+
+    public void drive(){
+        System.out.println("차량이 주행합니다.");
+    }
+}
+
+class Car extends Vehicle{
+    @Override
+    public void drive() {
+        System.out.println("자동차가 주행합니다.");
+    }
+}
+
+class Bike extends Vehicle{
+    @Override
+    public void drive() {
+        System.out.println("오토바이가 주행합니다.");
+    }
+}
+
+
+public class VehicleExam {
+    public static void main(String[] args) {
+        Vehicle[] vehicle = new Vehicle[3];
+        vehicle[0] = new Car();
+        vehicle[1] = new Vehicle();
+        vehicle[2] = new Bike();
+
+        for (Vehicle vehicle1 : vehicle) {
+            vehicle1.drive();
+        }
+
+
+    }
+}
