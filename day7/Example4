@@ -1,0 +1,54 @@
+문제 4: 인터페이스를 이용한 전략 교체 (Strategy Pattern 맛보기)
+요구사항
+Attackable 인터페이스를 정의한다.
+메서드: void attack()
+SwordAttack, BowAttack 클래스를 만들어 Attackable 구현
+SwordAttack: "칼로 공격합니다!"
+BowAttack: "활로 공격합니다!"
+Character 클래스를 만들고, Attackable attackStrategy 필드를 갖는다.
+setAttackStrategy(Attackable strategy) 메서드로 현재 공격 전략을 교체할 수 있게 한다.
+performAttack() 메서드에서 attackStrategy.attack() 호출
+main 메서드에서 Character 객체를 만들고, 처음에는 SwordAttack으로 설정 후 performAttack() 호출, 이후 BowAttack으로 전략을 바꿔 다시 performAttack() 호출한다.
+
+package day08.exam;
+interface Attackable{
+    void attack();
+}
+
+class SwordAttack implements Attackable{
+    @Override
+    public void attack() {
+        System.out.println("칼로 공격합니다!");
+    }
+}
+
+class BowAttack implements Attackable{
+    @Override
+    public void attack() {
+        System.out.println("활로 공격합니다!");
+    }
+}
+
+class Character{
+    Attackable attackStrategy;
+
+    public void setAttackStrategy(Attackable attackStrategy) {
+        this.attackStrategy = attackStrategy;
+    }
+
+    public void performAttack(){
+        attackStrategy.attack();
+    }
+}
+public class AttackExam {
+    public static void main(String[] args) {
+        Character character = new Character();
+        character.setAttackStrategy(new SwordAttack());
+        character.performAttack();
+
+        character.setAttackStrategy(new BowAttack());
+        character.performAttack();
+
+
+    }
+}
