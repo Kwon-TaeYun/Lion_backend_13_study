@@ -1,0 +1,33 @@
+문제 1: 나눗셈 예외 처리
+요구사항
+두 개의 정수 a, b를 코드 상에서 정하거나 Scanner로 입력받는다.
+a / b 연산을 수행하는 메서드를 만들고, main에서 호출한다.
+b가 0일 경우 ArithmeticException이 발생할 수 있다.
+try-catch 블록을 사용하여 0으로 나눌 수 없습니다.라는 메시지를 출력하고, 예외 상황을 안전하게 처리한다.
+
+
+문제 2: 배열 인덱스 예외 처리
+요구사항
+길이가 3인 정수 배열을 선언하고, {10, 20, 30}으로 초기화한다.
+사용자에게 배열 인덱스를 하나 입력받은 후, 해당 인덱스의 값을 출력하는 메서드를 만든다.
+0~2 이외의 인덱스를 입력하면 ArrayIndexOutOfBoundsException이 발생한다.
+try-catch를 통해 인덱스 범위를 벗어난 경우 "인덱스 범위를 확인하세요!"라는 메시지를 출력하고 프로그램이 정상 종료되도록 한다.
+
+
+
+문제 3: 문자열 길이 예외 처리
+요구사항
+문자열 변수를 하나 선언하고, null로 초기화한다.
+해당 문자열의 길이를 출력하는 코드를 작성한다. (str.length())
+null 상태에서 length()를 호출하면 NullPointerException 발생
+try-catch로 NullPointerException을 처리하고 "문자열이 null 상태입니다."라고 출력한다.
+
+
+문제 4: 형변환 예외 처리(선택 문제)
+요구사항
+문자열 변수 String numStr = "123a" 라고 초기화한다.
+Integer.parseInt(numStr)를 호출해 정수로 변환하려 한다.
+Integer.parseInt("123a")는 숫자 이외의 문자를 포함하므로 NumberFormatException 발생
+try-catch로 NumberFormatException을 처리하고 "숫자가 아닌 값은 정수로 변환할 수 없습니다."라고 출력한다.
+
+
