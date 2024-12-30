@@ -1,0 +1,45 @@
+문제 5: 인터페이스 상속
+요구사항
+Readable 인터페이스 정의
+메서드: String readContent()
+Writable 인터페이스 정의
+메서드: void writeContent(String content)
+ReadWritable 인터페이스를 만들고, Readable과 Writable을 상속받는다.
+FileHandler 클래스를 만들어 ReadWritable 구현
+readContent() 메서드: "파일에서 내용을 읽습니다." 반환
+writeContent(String content) 메서드: "파일에 내용을 썼습니다." 출력
+main에서 ReadWritable 타입으로 FileHandler 객체를 다루며 readContent(), writeContent() 호출
+
+package day08.exam;
+interface Readable{
+    String readContent();
+}
+
+interface Writable{
+    void writeCotent(String content);
+}
+
+interface ReadWritable extends Readable, Writable{
+
+}
+
+class FileHandler implements ReadWritable{
+    @Override
+    public String readContent() {
+        return "파일에서 내용을 읽습니다.";
+    }
+
+    @Override
+    public void writeCotent(String content) {
+        System.out.println(content);
+
+    }
+}
+public class ReadableTest {
+    public static void main(String[] args) {
+        ReadWritable readWritable = new FileHandler();
+        System.out.println(readWritable.readContent());
+        readWritable.writeCotent("파일에 내용을 썼습니다.");
+
+    }
+}
