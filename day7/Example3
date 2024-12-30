@@ -1,0 +1,64 @@
+문제 3: 인터페이스를 통한 기능 확장
+요구사항
+Calculator 인터페이스를 정의한다.
+메서드: int add(int a, int b), int subtract(int a, int b)
+Calculator를 구현하는 BasicCalculator 클래스를 만든다.
+단순히 +, - 연산 결과를 반환
+기존 코드 수정 없이 기능을 확장하기 위해 Multipliable 인터페이스를 추가한다.
+메서드: int multiply(int a, int b)
+Multipliable을 구현하는 AdvancedCalculator 클래스를 만든다.
+multiply 메서드 구현
+추가로 AdvancedCalculator는 Calculator도 구현해 add, subtract도 가능하게 한다.
+main 메서드에서 Calculator 타입으로 BasicCalculator와 AdvancedCalculator를 각각 사용해보고, AdvancedCalculator를 Multipliable 타입으로 사용해 multiply도 호출해본다.
+
+package day08.exam;
+interface Calculator{
+    int add(int a, int b);
+    int subtract(int a, int b);
+}
+
+interface Multipliable{
+    int multiply(int a, int b);
+}
+
+class BasicCalculator implements Calculator{
+    @Override
+    public int add(int a, int b) {
+        return a+b;
+    }
+
+    @Override
+    public int subtract(int a, int b) {
+        return a-b;
+    }
+}
+
+class AdvancedCalculator implements Calculator, Multipliable{
+    @Override
+    public int add(int a, int b) {
+        return a+b;
+    }
+
+    @Override
+    public int subtract(int a, int b) {
+        return a-b;
+    }
+
+    @Override
+    public int multiply(int a, int b) {
+        return a*b;
+    }
+}
+
+public class CalculatorExam {
+    public static void main(String[] args) {
+        Calculator calculator = new BasicCalculator();
+        Calculator calculator1 = new AdvancedCalculator();
+        calculator.add(2,3);
+        calculator.subtract(2,3);
+        calculator1.add(2,3);
+        calculator1.subtract(2,3);
+        Multipliable multipliable = new AdvancedCalculator();
+        multipliable.multiply(2,3);
+    }
+}
