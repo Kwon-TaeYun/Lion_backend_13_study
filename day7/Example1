@@ -1,1 +1,27 @@
+문제 1: 기본적인 인터페이스 구현
+요구사항
+Printer 인터페이스를 정의한다.
+메서드: void print(String message)
+Printer 인터페이스를 구현하는 ConsolePrinter 클래스를 만든다.
+print(String message) 메서드에서 전달받은 메시지를 콘솔에 출력한다.
+main 메서드에서 Printer 타입 변수에 ConsolePrinter 객체를 할당하고, print 메서드를 호출해 메시지를 화면에 출력해보자.
+
+package day08.exam;
+interface Printer{
+    void print(String message);
+}
+
+class ConsolePrinter implements Printer{
+    @Override
+    public void print(String message) {
+        System.out.println(message);
+    }
+}
+public class PrinterExam {
+    public static void main(String[] args) {
+        Printer printer = new ConsolePrinter();
+        printer.print("콘솔프린트로 프린트 출력");
+
+    }
+}
 
