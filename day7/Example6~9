@@ -5,6 +5,25 @@ a / b 연산을 수행하는 메서드를 만들고, main에서 호출한다.
 b가 0일 경우 ArithmeticException이 발생할 수 있다.
 try-catch 블록을 사용하여 0으로 나눌 수 없습니다.라는 메시지를 출력하고, 예외 상황을 안전하게 처리한다.
 
+package day09.exam;
+
+import java.util.Scanner;
+
+public class DivisionExam {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int a = scanner.nextInt();
+        int b = scanner.nextInt();
+        double result;
+        try {
+            result = a / b;
+            System.out.println(result);
+        }catch (ArithmeticException e){
+            System.out.println("0으로 나눌 수 없습니다.");
+        }
+    }
+}
+
 
 문제 2: 배열 인덱스 예외 처리
 요구사항
@@ -13,6 +32,24 @@ try-catch 블록을 사용하여 0으로 나눌 수 없습니다.라는 메시�
 0~2 이외의 인덱스를 입력하면 ArrayIndexOutOfBoundsException이 발생한다.
 try-catch를 통해 인덱스 범위를 벗어난 경우 "인덱스 범위를 확인하세요!"라는 메시지를 출력하고 프로그램이 정상 종료되도록 한다.
 
+package day09.exam;
+
+import java.util.Scanner;
+
+public class ArrayExam {
+    public static void main(String[] args) {
+        int[] array = {10, 20, 30};
+        try{
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("인덱스 입력: ");
+            int i = scanner.nextInt();
+            System.out.println(array[i]);
+
+        }catch (ArrayIndexOutOfBoundsException e){
+            System.out.println("인덱스 범위를 확인하세요!");
+        }
+    }
+}
 
 
 문제 3: 문자열 길이 예외 처리
@@ -22,6 +59,19 @@ try-catch를 통해 인덱스 범위를 벗어난 경우 "인덱스 범위를 �
 null 상태에서 length()를 호출하면 NullPointerException 발생
 try-catch로 NullPointerException을 처리하고 "문자열이 null 상태입니다."라고 출력한다.
 
+package day09.exam;
+
+public class LengthExam {
+    public static void main(String[] args) {
+        String s = null;
+        try{
+            System.out.println(s.length());
+        }catch (NullPointerException e){
+            System.out.println("문자열이 null 상태입니다.");
+        }
+    }
+}
+
 
 문제 4: 형변환 예외 처리(선택 문제)
 요구사항
@@ -29,5 +79,19 @@ try-catch로 NullPointerException을 처리하고 "문자열이 null 상태입�
 Integer.parseInt(numStr)를 호출해 정수로 변환하려 한다.
 Integer.parseInt("123a")는 숫자 이외의 문자를 포함하므로 NumberFormatException 발생
 try-catch로 NumberFormatException을 처리하고 "숫자가 아닌 값은 정수로 변환할 수 없습니다."라고 출력한다.
+
+package day09.exam;
+
+public class ParseIntExam {
+    public static void main(String[] args) {
+        String numStr = "123a";
+        try{
+            System.out.println(Integer.parseInt(numStr));
+        }catch (NumberFormatException e){
+            System.out.println("숫자가 아닌 값은 정수로 변환할 수 없습니다.");
+        }
+    }
+}
+
 
 
