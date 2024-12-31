@@ -1,0 +1,16 @@
+문제2: 특정 문자열 치환하기
+요구사항:
+주어진 문자열에서 특정 단어를 모두 다른 단어로 치환하는 메소드를 작성하세요.
+
+메소드명: replaceAllWords(String original, String target, String replacement)
+반환타입: String
+예시:
+
+replaceAllWords("I like cat. Cat is cute.", "cat", "dog")
+-> "I like dog. Cat is cute."
+(주의: 대소문자 구분, 정확히 일치하는 단어만 치환)
+힌트:
+
+String.replace() 또는 String.replaceAll() 메서드 사용 가능.
+대소문자를 구분하려면 직접 비교하거나 정규식을 활용.
+대소문자 구분 없이 처리하고 싶다면 toLowerCase() 등을 활용한 로직 설계 필요.
