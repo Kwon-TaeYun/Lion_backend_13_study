@@ -1,0 +1,11 @@
+연습문제 6: 문자열 역순 변환하기
+요구사항
+메소드명: reverseChange(String str)
+반환타입: String
+주어진 문자열을 역순으로 뒤집어 반환한다.
+예시
+reverseChange("abc") -> "cba"
+reverseChange("Hello") -> "olleH"
+힌트
+문자열을 끝에서부터 시작하여 새로운 문자열에 추가
+또는 StringBuilder의 reverse() 메서드 활용
