@@ -1,0 +1,12 @@
+연습문제 5: 문자열 내 공백 및 알파벳 개수 세기
+요구사항
+메소드1: spaceCount(String str)
+문자열 내에 포함된 공백 문자(' ')의 개수를 반환한다.
+메소드2: alphaCount(String str)
+문자열 내에 포함된 알파벳(대소문자 포함) 문자의 개수를 반환한다.
+예시
+spaceCount("test tset ts ttt") -> 3
+alphaCount("test tset ts ttt") -> 13
+힌트
+문자 하나씩 확인하는 for 루프 혹은 for-each 루프 활용
+Character.isWhitespace()로 공백체크, Character.isLetter()로 알파벳 체크
