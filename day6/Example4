@@ -1,0 +1,17 @@
+연습문제 4: 물품번호 검증 메소드 작성하기
+요구사항
+메소드명: checkProductNumber(String productNumber)
+반환타입: boolean
+조건:
+물품번호의 길이는 6자리여야 한다.
+물품번호의 1, 2번째 문자는 알파벳(대소문자 상관없음)이어야 한다.
+물품번호의 3~6번째 문자는 모두 숫자여야 한다.
+예시
+checkProductNumber("te3456") -> true
+checkProductNumber("t33456") -> false (두 번째 문자가 숫자이므로)
+checkProductNumber("ar49786") -> false (길이가 7이므로)
+checkProductNumber("test56") -> false (길이가 6이지만 3~6번째에 알파벳 's' 포함)
+힌트
+String.length()로 길이 체크
+charAt() 메서드로 특정 문자 추출
+Character.isLetter()와 Character.isDigit() 메서드 활용
