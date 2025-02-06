@@ -1,0 +1,87 @@
+package day18.stream;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+public class Exam {
+    public static void main(String[] args) {
+        //exam01
+        int[] numbers = {3, 10, 4, 17, 6};
+        int sum = Arrays.stream(numbers).filter(i -> i % 2 == 0).sum();
+        System.out.println(sum);
+
+        //exam02
+        List<String> words = Arrays.asList("apple", "banana", "cherry", "date");
+        Object[] array = words.stream().filter(s -> s.length() >= 5).map(s -> s.toUpperCase()).toArray();
+        System.out.println(Arrays.toString(array));
+
+        //exam03
+        List<Student> students = Arrays.asList(
+                new Student("Alice", 82),
+                new Student("Bob", 90),
+                new Student("Charlie", 72),
+                new Student("David", 76)
+        );
+        List<String> collect = students.stream().filter(s -> s.getScore() >= 80).map(Student::getName).sorted().collect(Collectors.toList());
+        System.out.println(collect);
+
+        //exam04
+        List<Employee> employees = Arrays.asList(
+                new Employee("Alice", "HR", 3000),
+                new Employee("Bob", "HR", 2000),
+                new Employee("Charlie", "Engineering", 5000),
+                new Employee("David", "Engineering", 4000)
+        );
+
+        Map<String, Double> avgSalaryByDept = employees.stream()
+                .collect(Collectors.groupingBy(
+                        Employee::getDepartment,
+                        Collectors.averagingDouble(Employee::getSalary)
+                ));
+
+        System.out.println(avgSalaryByDept);
+
+        //exam05
+        List<Product> products = Arrays.asList(
+                new Product("Laptop", "Electronics", 1200.00),
+                new Product("Smartphone", "Electronics", 700.00),
+                new Product("Desk", "Furniture", 300.00),
+                new Product("Chair", "Furniture", 150.00)
+        );
+        Map<String, Double> product = products.stream()
+                .collect(Collectors.groupingBy(Product::getCategory,
+                        Collectors.averagingDouble(Product::getPrice)));
+        System.out.println(product);
+
+        //exam06
+        List<Student> studentList = Arrays.asList(
+                new Student("Alice", 14, 88),
+                new Student("Bob", 23, 82),
+                new Student("Charlie", 17, 95),
+                new Student("David", 21, 73)
+        );
+        Map<String, Double> student = studentList.stream().
+                collect(Collectors.groupingBy(s -> s.getAge() / 10 * 10 + "s", Collectors.averagingDouble(Student::getScore)));
+        System.out.println(student);
+
+        //exam07
+        List<Temperature> temperatures = Arrays.asList(
+                new Temperature("Seoul", 33),
+                new Temperature("New York", 30),
+                new Temperature("Seoul", 34),
+                new Temperature("New York", 28)
+        );
+        Map<String, Integer> maxTempByCity = temperatures.stream()
+                .collect(Collectors.toMap(
+                        Temperature::getCity,
+                        Temperature::getMaxTemp,
+                        Integer::max // 같은 도시가 있을 경우 최댓값 유지
+                ));
+
+        maxTempByCity.forEach((city, maxTemp) ->
+                System.out.println(city + ": " + maxTemp));
+
+    }
+}
